@@ -40,8 +40,7 @@ Import this repo twice in [Vercel](https://vercel.com/new), each with a differen
 |---------|-------|
 | Root Directory | `Wes-demo-express-server` |
 | Framework | Other |
-| Build Command | *(leave empty)* |
-| Install Command | `npm install` |
+Vercel auto-detects `src/server.js` as the Express entry point (zero-config). No custom build command needed.
 
 **Environment variables:**
 

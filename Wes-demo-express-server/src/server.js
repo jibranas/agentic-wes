@@ -29,6 +29,10 @@ async function getMetadata(db) {
   return metadata || { demo_day: DEMO_DAY };
 }
 
+app.get("/", (_req, res) => {
+  res.json({ ok: true, service: "wes-demo-api", health: "/api/health" });
+});
+
 app.get(
   "/api/health",
   asyncHandler(async (_req, res) => {
@@ -400,4 +404,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { app };
+module.exports = app;
