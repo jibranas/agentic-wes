@@ -1,0 +1,18 @@
+---
+description: Preserve the WES Operations Agent chat panel layout.
+globs: wes-demo-app/src/components/wes-demo-dashboard.tsx
+alwaysApply: false
+---
+
+# WES Operations Agent Chat Panel
+
+When editing `wes-demo-dashboard.tsx`, preserve the right-side agent panel layout:
+
+- The panel must stay fixed to the viewport with `fixed bottom-0 right-0 top-0`.
+- Use a fixed-height flex column: `flex h-dvh min-h-0 flex-col overflow-hidden`.
+- Header, action prompt, and input form must be `shrink-0`.
+- The chat input must be pinned at the bottom of the right panel and remain visible without page scrolling.
+- The message history must be the only scrollable middle section and should use `min-h-0 flex-1`.
+- Bottom-align short conversations inside the message history with `min-h-full flex flex-col justify-end`.
+- Extra vertical space should sit above the conversation, not below the input or between the latest message and the input.
+- Preserve auto-scroll to `chatBottomRef` when messages stream in.

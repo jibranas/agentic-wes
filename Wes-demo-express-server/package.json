@@ -1,0 +1,24 @@
+{
+  "name": "wes-demo-express-server",
+  "version": "1.0.0",
+  "description": "Express API and synthetic MongoDB data generator for the WES AI demo.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "seed": "node src/seed.js",
+    "smoke": "node src/smoke.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.2.0",
+    "openai": "^6.34.0",
+    "zod": "^4.3.6"
+  }
+}
