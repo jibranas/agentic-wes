@@ -2,13 +2,28 @@ const { MongoClient } = require("mongodb");
 const { config } = require("./config");
 
 let client;
+let clientPromise;
 let database;
+
+const clientOptions = {
+  maxPoolSize: 10,
+  serverSelectionTimeoutMS: 15000,
+  connectTimeoutMS: 15000,
+};
 
 async function connectDb() {
   if (database) return database;
 
-  client = new MongoClient(config.mongoUri);
-  await client.connect();
+  if (!clientPromise) {
+    client = new MongoClient(config.mongoUri, clientOptions);
+    clientPromise = client.connect().catch((error) => {
+      clientPromise = undefined;
+      client = undefined;
+      throw error;
+    });
+  }
+
+  await clientPromise;
   database = client.db(config.mongoDbName);
   return database;
 }
@@ -17,6 +32,7 @@ async function closeDb() {
   if (client) {
     await client.close();
     client = undefined;
+    clientPromise = undefined;
     database = undefined;
   }
 }

@@ -39,7 +39,8 @@ Import this repo twice in [Vercel](https://vercel.com/new), each with a differen
 | Setting | Value |
 |---------|-------|
 | Root Directory | `Wes-demo-express-server` |
-| Framework | Other |
+| Framework | Express |
+
 Vercel auto-detects `src/server.js` as the Express entry point (zero-config). No custom build command needed.
 
 **Environment variables:**
@@ -60,6 +61,13 @@ MONGODB_URI="mongodb+srv://..." npm run seed
 ```
 
 Verify: `GET https://<backend-url>/api/health`
+
+**If `/api/health` returns an SSL/TLS error from MongoDB:**
+
+1. In Atlas → **Network Access** → add `0.0.0.0/0` (Allow access from anywhere). Vercel uses dynamic IPs, so a single home IP is not enough.
+2. Confirm the cluster is **not paused** (Atlas → Database → Resume if needed).
+3. In Vercel env vars, use the exact Atlas connection string. URL-encode special characters in the password (`@` → `%40`, etc.).
+4. If it still fails, in Atlas → Connect → Drivers, switch from **SRV** to **Standard connection string** and use that as `MONGODB_URI` instead.
 
 ### 2. Frontend — `wes-demo-app`
 
