@@ -53,7 +53,7 @@ Import this repo twice in [Vercel](https://vercel.com/new), each with a differen
 | `OPENAI_MODEL` | e.g. `gpt-4o-mini` |
 | `FRONTEND_ORIGIN` | Frontend Vercel URL (for CORS) |
 
-Seed Atlas once from app locally):
+Seed Atlas once from your machine:
 
 ```bash
 cd Wes-demo-express-server
