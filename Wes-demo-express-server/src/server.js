@@ -8,7 +8,17 @@ const { DEMO_DAY } = require("./data/generateSyntheticData");
 
 const app = express();
 
-app.use(cors({ origin: config.frontendOrigin }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (config.isAllowedFrontendOrigin(origin)) {
+        callback(null, origin ?? config.frontendOrigins[0]);
+        return;
+      }
+      callback(null, false);
+    },
+  }),
+);
 app.use(express.json({ limit: "1mb" }));
 
 function asyncHandler(handler) {
